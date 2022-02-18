@@ -12,7 +12,7 @@ export default function Car() {
 				<input type="text" />
 				<label>combustivel:</label>	
 				<input type="text" />
-				<label>numero da placa:</label>	
+				{/* <label>numero da placa:</label>	
 				<input type="number" />
 				<label>numero da placa anterior:</label>
 				<input type="number" />
@@ -27,7 +27,7 @@ export default function Car() {
 				<label>categoria:</label>	
 				<input type="text" />
 				<label>ipva:</label>
-				<input type="boolean" />
+				<input type="boolean" /> */}
 			</div>
 		</div>
 	)
