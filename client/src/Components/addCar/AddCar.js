@@ -20,10 +20,9 @@ export default function AddCar() {
 	
 
 	return (
-		<div className="car-card bg-red-500 m-8 p-2">
-			<h1 className="text-xl"> Title </h1>
-			<img src="../../../public/logo512.png" alt="fusca" />
-			<div className="max-width-sm text-xl text-center border-solid border-4 border-stone-500 rounded">
+		<div className=" font-mono car-card bg-gray-200 text-center m-8 p-2 rounded-3xl">
+			<h1 className="text-3xl p-2"> Add your new car Ricardo </h1>
+			<div className="max-width-sm text-xl text-center border-solid border-4 border-stone-500 rounded p-2 m-2 flex flex-col">
 				<label>tipo:</label>
 				<input onChange={(event) => {setTipo(event.target.value)}} type="text" />
 				<label>marca:</label>	
