@@ -1,4 +1,5 @@
 import { useState } from "react"
+import Axios from "axios";
 
 export default function AddCar() {
 	const [tipo, setTipo] = useState('');
@@ -13,6 +14,18 @@ export default function AddCar() {
 	// const [anoModelo, setAnoModelo] = useState('');
 	// const [categoria, setCategoria] = useState('');
 	// const [ipva, setIpva] = useState('');
+
+	const addCar = () => {
+		Axios.post("http://localhost:3001/create", {
+			tipo: tipo,
+			marca: marca,
+			modelo: modelo,
+			combustivel: combustivel
+		}).then(() => {
+			console.log("@@ success");
+		})
+	}
+
 	
 	const displayInfo = () => {
 		console.log(tipo + marca + modelo + combustivel)
@@ -53,7 +66,7 @@ export default function AddCar() {
 					<input onChange={(event) => {setCategoria(event.target.value)}} type="text" />
 					<label>ipva:</label>
 					<input onChange={(event) => { setIpva(event.target.value) }} type="boolean" /> */}
-					<button className='self-center w-min bg-white border-black rounded-md border-2 mt-4 p-2' onClick={displayInfo}> add </button>
+					<button className='self-center w-min bg-white border-black rounded-md border-2 mt-4 p-2' onClick={addCar}> add </button>
 				</div>
 			</div>
 		</div>
