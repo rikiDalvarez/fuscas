@@ -14,15 +14,18 @@ function DataFetching() {
 		.catch(err => console.log(err))
 	},[])
 	return (
-			<ul className="flex flex-col bg-red-400 m-2 rounded-lg border-8 ">
+			<div className="flex flex-row bg-red-400 m-2 rounded-lg border-8 ">
 				{
 					carStore.map(car => (
-						<li className=" m-2 rounded-lg rounded-lg bg-stone-300 max-h-10" key={car.id}>
+						<div className=" max-w-xs rounded overflow-hidden shadow-lg my-2" key={car.id}>
+							<img class= "w-full " src={require('../Images/VW-Fusca.jpeg')} alt= {car.id}/>
+							<h2 className="m-2">{car.tipo}</h2>
 							<h1 className="m-2">{car.modelo}</h1>
-						</li>
+							<h2 className="m-2">{car.marca}</h2>
+						</div>
 					))
 				}
-			</ul>
+			</div>
 
 	)
 }
