@@ -1,45 +1,74 @@
 import express from "express";
 const app = express();
-import mysql from "mysql";
 import cors from "cors";
+import { Cars } from "./db.js";
+import mongoose from "mongoose";
 
 app.use(cors());
 app.use(express.json());
 
-
-const db = mysql.createConnection({
-	user: 'root',
-	host: 'localhost',
-	password: '',
-	database: 'coches_ricardo'
-});
-
 	
-app.get('/cars', (req, res) => {
-	db.query('SELECT * FROM fuscas', (err, result) => {
-		if (err) {
-			console.log(err);
-		}
-		console.log("request made")
-		res.send(result);	
-	})
+app.get('/', async (req, res) => {
+	let cars;
+	try {
+		cars = await Cars.find();
+	} catch (error) {
+		console.error(error)
+	}
+	res.send(cars)
 })
 
 
-app.post('/create', (req, res) => {
+app.post('/create', async (req, res) => {
 	const tipo = req.body.tipo
 	const marca = req.body.marca
 	const modelo = req.body.modelo
 	const combustivel = req.body.combustivel
+	const placa = req.body.placa
+	const cor = req.body.cor
+	const placaAnterior = req.body.placaAnterior
+	const chassi = req.body.chassi
+	const anoFabricacao = req.body.anoFabricacao
+	const anoModelo = req.body.anoModelo
+	const categoria = req.body.categoria
+	const ipva = req.body.ipva
+	
+	try {
+		const schema = new mongoose.Schema({
+			tipo : String,
+			marca : String,
+			modelo : String,
+			combustivel : String,
+			placa : String,
+			cor : String,
+			placaAnterior : String,
+			chassi : String,
+			anoFabricacao : Number,
+			anoModelo : Number,
+			categoria : String,
+			ipva : String
+		});
 
-	db.query('INSERT INTO fuscas (tipo, marca, modelo, combustivel) VALUES (?,?,?,?)',
-		[tipo, marca, modelo, combustivel], (err, result) => {
-			if (err) {
-				console.log(err)
-			} else {
-				res.send("@@")
-			}
-	})
+		const car = new Cars();
+		car.tipo = tipo;
+		car.marca = marca;
+		car.modelo = modelo
+		car.combustivel = combustivel
+		car.placa = placa	
+		car.cor = cor	
+		car.placaAnterior = placaAnterior	
+		car.chassi = chassi
+		car.anoFabricacao = anoFabricacao
+		car.anoModelo = anoModelo 
+		car.categoria = categoria
+		car.ipva = ipva
+
+		await car.save();
+
+		console.log(car)
+	} catch (error) {
+		console.error(error)
+	}
 })
 
 app.listen(3001, () => {

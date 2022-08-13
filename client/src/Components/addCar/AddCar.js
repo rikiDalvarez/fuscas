@@ -6,30 +6,38 @@ export default function AddCar() {
 	const [marca, setMarca] = useState('');
 	const [modelo, setModelo] = useState('');
 	const [combustivel, setCombustivel] = useState('');
-	// const [placa, setPlaca] = useState('');
-	// const [cor, setCor] = useState('');
-	// const [placaAnterior, setPlacaAnterior] = useState('');
-	// const [chassi, setChassi] = useState('');
-	// const [anoFabricacao, setAnoFabricacao] = useState('');
-	// const [anoModelo, setAnoModelo] = useState('');
-	// const [categoria, setCategoria] = useState('');
-	// const [ipva, setIpva] = useState('');
+	const [placa, setPlaca] = useState('');
+	const [cor, setCor] = useState('');
+	const [placaAnterior, setPlacaAnterior] = useState('');
+	const [chassi, setChassi] = useState('');
+	const [anoFabricacao, setAnoFabricacao] = useState('');
+	const [anoModelo, setAnoModelo] = useState('');
+	const [categoria, setCategoria] = useState('');
+	const [ipva, setIpva] = useState('');
 
 	const addCar = () => {
 		Axios.post("http://localhost:3001/create", {
-			tipo: tipo,
-			marca: marca,
-			modelo: modelo,
-			combustivel: combustivel
+			tipo,
+			marca,
+			modelo,
+			combustivel,
+			placa,
+			cor,
+			placaAnterior,
+			chassi,
+			anoFabricacao,
+			anoModelo,
+			categoria,
+			ipva
 		}).then(() => {
 			console.log("@@ success");
 		})
 	}
 
 	
-	const displayInfo = () => {
-		console.log(tipo + marca + modelo + combustivel)
-	}
+	// const displayInfo = () => {
+	// 	console.log( + marca + modelo + combustivel)
+	// }
 	
 
 	/* 
@@ -50,7 +58,7 @@ export default function AddCar() {
 					<input onChange={(event) => {setModelo(event.target.value)}} type="text" />
 					<label>combustivel:</label>	
 					<input onChange={(event) => {setCombustivel(event.target.value)}} type="text" />
-					{/* <label>numero da placa:</label>	
+					<label>numero da placa:</label>	
 					<input onChange={(event) => {setPlaca(event.target.value)}} type="number" />
 					<label>numero da placa anterior:</label>
 					<input onChange={(event) => {setPlacaAnterior(event.target.value)}} type="number" />
@@ -65,7 +73,7 @@ export default function AddCar() {
 					<label>categoria:</label>	
 					<input onChange={(event) => {setCategoria(event.target.value)}} type="text" />
 					<label>ipva:</label>
-					<input onChange={(event) => { setIpva(event.target.value) }} type="boolean" /> */}
+					<input onChange={(event) => { setIpva(event.target.value) }} type="boolean" />
 					<button className='self-center w-min bg-white border-black rounded-md border-2 mt-4 p-2' onClick={addCar}> add </button>
 				</div>
 			</div>
