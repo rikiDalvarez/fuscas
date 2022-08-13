@@ -7,7 +7,6 @@ import mongoose from "mongoose";
 app.use(cors());
 app.use(express.json());
 
-	
 app.get('/', async (req, res) => {
 	let cars;
 	try {
@@ -17,7 +16,6 @@ app.get('/', async (req, res) => {
 	}
 	res.send(cars)
 })
-
 
 app.post('/create', async (req, res) => {
 	const tipo = req.body.tipo
@@ -32,21 +30,21 @@ app.post('/create', async (req, res) => {
 	const anoModelo = req.body.anoModelo
 	const categoria = req.body.categoria
 	const ipva = req.body.ipva
-	
+
 	try {
 		const schema = new mongoose.Schema({
-			tipo : String,
-			marca : String,
-			modelo : String,
-			combustivel : String,
-			placa : String,
-			cor : String,
-			placaAnterior : String,
-			chassi : String,
-			anoFabricacao : Number,
-			anoModelo : Number,
-			categoria : String,
-			ipva : String
+			tipo: String,
+			marca: String,
+			modelo: String,
+			combustivel: String,
+			placa: String,
+			cor: String,
+			placaAnterior: String,
+			chassi: String,
+			anoFabricacao: String,
+			anoModelo: String,
+			categoria: String,
+			ipva: String
 		});
 
 		const car = new Cars();
@@ -54,18 +52,18 @@ app.post('/create', async (req, res) => {
 		car.marca = marca;
 		car.modelo = modelo
 		car.combustivel = combustivel
-		car.placa = placa	
-		car.cor = cor	
-		car.placaAnterior = placaAnterior	
+		car.placa = placa
+		car.cor = cor
+		car.placaAnterior = placaAnterior
 		car.chassi = chassi
 		car.anoFabricacao = anoFabricacao
-		car.anoModelo = anoModelo 
+		car.anoModelo = anoModelo
 		car.categoria = categoria
 		car.ipva = ipva
 
 		await car.save();
 
-		console.log(car)
+		res.send(car)
 	} catch (error) {
 		console.error(error)
 	}
