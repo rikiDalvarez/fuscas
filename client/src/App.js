@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import AddCar from "./Components/addCar/AddCar";
 import { CarsList } from "./Components/cars/CarsList";
 
+
 function App() {
 
   const apiURL = "http://localhost:3001/";
@@ -53,9 +54,9 @@ function App() {
 
     <div className="">
       <h1 className=" italic font-mono text-6xl text-slate-50 tracking-normal text-center align-middle p-5 bg-gradient-to-r from-red-600 to-gray-700">Fuscas</h1>
-      <div className="flex">
+      <div className="m-8 flex mt-1">
         <AddCar className="w-1/3" addCar={addCar} onInputChange={onInputChange} />
-        <div className="flex flex-col w-2/3">
+        <div className="flex flex-col w-2/3 ml-10">
           <CarsList className="" cars={cars}></CarsList>
         </div>
       </div>
