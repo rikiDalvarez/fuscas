@@ -10,7 +10,8 @@ mongoose.connect(url)
 		console.error(`Error connecting to the database. n${err}`);
 	});
 
-export const Cars = mongoose.model("cars", new mongoose.Schema({
+
+const details = new mongoose.Schema({
 	tipo: String,
 	marca: String,
 	modelo: String,
@@ -23,6 +24,7 @@ export const Cars = mongoose.model("cars", new mongoose.Schema({
 	anoModelo: String,
 	categoria: String,
 	ipva: String
-}))
+})
+export const Cars = mongoose.model("cars", details)
 
 Cars.find((error, result) => console.log(result))
