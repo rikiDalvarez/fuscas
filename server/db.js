@@ -1,15 +1,24 @@
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 
-const url = `mongodb+srv://rikidalvarez:37SNMcFSE2zCnmKp@cluster0.mwf73.mongodb.net/Cluster0?retryWrites=true&w=majority`;
+dotenv.config();
 
-mongoose.connect(url)
+const dbName = "fuscas";
+
+const options = {
+	useNewUrlParser: true,
+	useUnifiedTopology: true,
+	dbName,
+};
+const url = process.env.MONGO_DB_URL;
+
+mongoose.connect(url, options)
 	.then(() => {
 		console.log('Connected to the database ')
 	})
 	.catch((err) => {
 		console.error(`Error connecting to the database. n${err}`);
 	});
-
 
 const details = new mongoose.Schema({
 	tipo: String,
@@ -27,4 +36,4 @@ const details = new mongoose.Schema({
 })
 export const Cars = mongoose.model("cars", details)
 
-Cars.find((error, result) => console.log(result))
+// Cars.find((error, result) => console.log(result))
